@@ -60,10 +60,13 @@ nav a{
   color: black;
   font-weight: bold;
   /* Requirement 1 code here*/
+  text-decoration: none; /* Remove the underline from all links in the navigation. */
 }
 
   /* Requirement 2 code here*/
-
+nav a:hover {
+  text-decoration: underline; /* When the mouse hovers over any link in the navigation add an underline under the link. */
+}
 
 
 .skip a{
@@ -75,19 +78,32 @@ nav a{
   z-index: 1;
 
   /* Requirement 3a code here*/
-  
+  position: absolute; /* The link is positioned 40px above the top of it’s parent element (it is hidden by default). */
+  top: -40px;
 }
 
 /* Requirement 3b code here*/
-
+.skip a:focus { /* When the link is in focus it is positioned even with the top of it’s parent (so it is visible only when in focus.) */
+  padding-top: 0px;
+}
 
 /* Requirement 4 code here*/
+*:focus{ /* Any element in focus should have a 2px solid border on all sides. */
+  border: 2px solid;
+}
 
 
-
-.container{
+.container{ /* .container class uses grid:
+  Three columns: 1fr 5fr 1fr
+  Five rows: all auto. 
+  Gap 15px between rows;
+  */  
   /* Requirement 5 code here*/
-
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+  /* is the template-rows right?? */
+  grid-template-rows: auto;
+  row-gap: 15px;
 }
 
 /* Remainder of requirements here: */
@@ -100,27 +116,54 @@ header{
   height: 400px; /* Parallax effect */
 
   /* YOUR CODE HERE; */
+  /*header element:
+Spans all of the columns
+Begins on 1st row and spans 1 row
+Header uses header.jpg as a non-repeating 
+                        background image with parallax effect
+*/
+  grid-row: 1 / span 1;
+  grid-column: 1 / -1;
+  background-image: url("../images/header.jpg");
 }
 
 
-
-.about-image{
-  
+.about, .method, .client, .contacts{ 
+  /* Begin in 2nd  column and span one column
+  Begin on the 2nd, 3rd, 4th and 5th rows    
+  respectively and each spans one row. */
+  grid-column: 2 / span 1;
 }
 
-.about{
- 
-}
-
-.method-image{
- 
-}
-
-.method{
-  
+.about-image, .method-image, .client-image, .contact-image{
+  /* Span all of the columns.
+Have a maximum height of  700px
+Hide any content that goes outside their   
+                         grid cell. 
+Begin on the 2nd, 3rd, 4th and 5th rows
+			 respectively and each spans one row. */
+  grid-column: 1 / -1;
+  max-height: 700px;
+  overflow: hidden;
 }
 
 /* You need to write some of your own selectors here */
+
+.about, .about-image { /* Begin on the 2nd row, spans one row */
+  grid-row: 2 / span 1;
+}
+
+.method, .method-image { /* Begin on the 3rd row, spans one row */
+  grid-row: 3 / span 1;
+}
+
+.client, .client-image { /* Begin on the 4th row, spans one row */
+  grid-row: 4 / span 1;
+}
+
+.contacts, .contact-image { /* Begin on the 5th row, spans one row */
+  grid-row: 5 / span 1;
+}
 
 
 
@@ -130,56 +173,35 @@ header{
   padding: 30px;
 
   /* Your code here */
-
+  /* .text-block is centered horizontally and vertically.  We are
+            looking for a single align property; */
+  /* text-align, align-self, justify-content? */
+  justify-content: center;
 }
 
 @media screen and (min-width: 800px){
   nav{
     padding: 30px 0;
-
+    /* Move the navigation so that the nav is aligned to the other side of the window */
     /* Your code here */
+    text-align: right;
   }
 
-  .container{
-   
+  .container{ /* container class uses grid with
+    Five columns: 50px, auto, 500px, auto, and  50px
+    Five rows: 400px, 400px, 400px, 400px, and 400px. */    
+    grid-template-columns: 50px auto 500px auto 50px;
+    grid-template-rows: 400px 400px 400px 400px 400px;
   }
 
-  
-
-  .about-image{
-  
+  .about, .client, .method-image, .contact-image {
+  grid-column: 3 / span 2;
   }
 
-  .about{
-    
+  .about-image, .client-image, .method, .contacts {
+  grid-column: 2 / span 2;
   }
-
-  .method-image{
-    
-  }
-
-  .method{
-   
-  }
-
-  .clients-image{
-    
-  }
-
-  .clients{
-    
-  }
-
-  .contact-image{
-    
-  }
-
-  .contact{
-    
-  }
-
 }
-
 
 /** Code for prefers reduced motion **/
 /* Make no changes below this line.
