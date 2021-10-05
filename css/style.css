@@ -84,12 +84,13 @@ nav a:hover {
 
 /* Requirement 3b code here*/
 .skip a:focus { /* When the link is in focus it is positioned even with the top of it’s parent (so it is visible only when in focus.) */
-  padding-top: 0px;
+  top: 10px;
 }
 
 /* Requirement 4 code here*/
 *:focus{ /* Any element in focus should have a 2px solid border on all sides. */
-  border: 2px solid;
+  border-style: solid;
+  border-width: 2px;
 }
 
 
@@ -117,25 +118,25 @@ header{
 
   /* YOUR CODE HERE; */
   /*header element:
-Spans all of the columns
-Begins on 1st row and spans 1 row
-Header uses header.jpg as a non-repeating 
+  Spans all of the columns
+  Begins on 1st row and spans 1 row
+  Header uses header.jpg as a non-repeating 
                         background image with parallax effect
-*/
+  */
   grid-row: 1 / span 1;
   grid-column: 1 / -1;
   background-image: url("../images/header.jpg");
 }
 
 
-.about, .method, .client, .contacts{ 
+.about, .method, .clients, .contact{ 
   /* Begin in 2nd  column and span one column
   Begin on the 2nd, 3rd, 4th and 5th rows    
   respectively and each spans one row. */
   grid-column: 2 / span 1;
 }
 
-.about-image, .method-image, .client-image, .contact-image{
+.about-image, .method-image, .clients-image, .contact-image{
   /* Span all of the columns.
 Have a maximum height of  700px
 Hide any content that goes outside their   
@@ -157,11 +158,11 @@ Begin on the 2nd, 3rd, 4th and 5th rows
   grid-row: 3 / span 1;
 }
 
-.client, .client-image { /* Begin on the 4th row, spans one row */
+.clients, .clients-image { /* Begin on the 4th row, spans one row */
   grid-row: 4 / span 1;
 }
 
-.contacts, .contact-image { /* Begin on the 5th row, spans one row */
+.contact, .contact-image { /* Begin on the 5th row, spans one row */
   grid-row: 5 / span 1;
 }
 
@@ -176,7 +177,8 @@ Begin on the 2nd, 3rd, 4th and 5th rows
   /* .text-block is centered horizontally and vertically.  We are
             looking for a single align property; */
   /* text-align, align-self, justify-content? */
-  justify-content: center;
+  align-self: center;
+  text-align: center;
 }
 
 @media screen and (min-width: 800px){
@@ -194,11 +196,11 @@ Begin on the 2nd, 3rd, 4th and 5th rows
     grid-template-rows: 400px 400px 400px 400px 400px;
   }
 
-  .about, .client, .method-image, .contact-image {
+  .about, .clients, .method-image, .contact-image {
   grid-column: 3 / span 2;
   }
 
-  .about-image, .client-image, .method, .contacts {
+  .about-image, .clients-image, .method, .contact {
   grid-column: 2 / span 2;
   }
 }
